@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  all_form:
+    image: iuryanadao/all_form
+    build: .
+    stdin_open: true
+    tty: true
+    container_name: all_form
+    env_file:
+      - ./.env.development
+    volumes:
+      - ./:/var/www/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    network_mode: host
+
+  # db:
+  #   image: postgres
+  #   restart: always
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     POSTGRES_DB: manager_farm
+  #     POSTGRES_USER: manager_farm_user
+  #     POSTGRES_PASSWORD: 123456789
+  #   network_mode: host
