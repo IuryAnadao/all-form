@@ -1,0 +1,22 @@
+pt:
+  activerecord:
+    attributes:
+      user:
+        personal_data: 'Dados pessoais'
+        register: 'Registrar'
+        log_in: 'Entrar'
+        forgot_your_password: 'Esqueceu sua senha?'
+        name: 'Nome'
+        cpf: 'CPF'
+        password: 'Senha'
+        password_confirmation: 'Confirmação de senha'
+      address:
+        address: 'Endereço'
+        street: 'Rua'
+        number: 'Número'
+        district: 'Bairro'
+        cep: 'CEP'
+        city: 'Cidade'
+        state: 'Estado'
+        country: 'País'
+        characters_minimum: 'Mínimo de %{number} characteres'

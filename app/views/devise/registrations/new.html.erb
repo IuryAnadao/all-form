@@ -1,29 +1,111 @@
-<h2>Sign up</h2>
+<div class="content bg-blue-400 w-full h-full">
+  <div class="grid justify-items-center w-full h-full">
+    <div class="grid content-center w-2/3 h-full">
+      <div
+        class="border rounded-lg grid justify-items-center h-full bg-white"
+      >
+        <div class="grid content-center h-full">
+          <div class="p-10">
+            <div class="text-center mb-5">
+              <h1 class="text-4xl font-bold"><%= t('activerecord.attributes.user.register') %></h1>
+            </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              <div class="text-center mb-2 pb-2 mt-4 border-b-2">
+                <h1 class="text-2xl font-bold"><%= t('activerecord.attributes.user.personal_data') %></h1>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+
+                <div>
+                  <%= f.label :name, t('activerecord.attributes.user.name'), class: 'text-lg font-bold' %><br />
+                  <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'rounded-lg w-full' %>
+                </div>
+
+                <div>
+                  <%= f.label :cpf, class: 'text-lg font-bold' %><br />
+                  <%= f.text_field :cpf, autofocus: true, autocomplete: "cpf", class: 'rounded-lg w-full' %>
+                </div>
+
+                <div>
+                  <%= f.label :email, class: 'text-lg font-bold' %><br />
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'rounded-lg w-full' %>
+                </div>
+
+              </div>
+
+              <div class="text-center mb-2 pb-2 mt-4 border-b-2">
+                <h1 class="text-2xl font-bold"><%= t('activerecord.attributes.address.address') %></h1>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+
+                <%= f.fields_for :address do |address_f| %>
+                  <div>
+                    <%= address_f.label :cep, t('activerecord.attributes.address.cep'), class: 'text-lg font-bold' %><br />
+                    <%= address_f.text_field :cep, autofocus: true, autocomplete: "cep", class: 'rounded-lg w-full' %>
+                  </div>
+
+                  <div>
+                    <%= address_f.label :street, t('activerecord.attributes.address.street'), class: 'text-lg font-bold' %><br />
+                    <%= address_f.text_field :street, autofocus: true, autocomplete: "street", class: 'rounded-lg w-full' %>
+                  </div>
+
+                  <div>
+                    <%= address_f.label :number, t('activerecord.attributes.address.number'), class: 'text-lg font-bold' %><br />
+                    <%= address_f.text_field :number, autofocus: true, autocomplete: "number", class: 'rounded-lg w-full' %>
+                  </div>
+
+                  <div>
+                    <%= address_f.label :district, t('activerecord.attributes.address.district'), class: 'text-lg font-bold' %><br />
+                    <%= address_f.text_field :district, autofocus: true, autocomplete: "district", class: 'rounded-lg w-full' %>
+                  </div>
+
+                  <div>
+                    <%= address_f.label :city, t('activerecord.attributes.address.city'), class: 'text-lg font-bold' %><br />
+                    <%= address_f.text_field :city, autofocus: true, autocomplete: "city", class: 'rounded-lg w-full' %>
+                  </div>
+
+                  <div>
+                    <%= address_f.label :state, t('activerecord.attributes.address.state'), class: 'text-lg font-bold' %><br />
+                    <%= address_f.text_field :state, autofocus: true, autocomplete: "state", class: 'rounded-lg w-full' %>
+                  </div>
+
+                  <div>
+                    <%= address_f.label :country, t('activerecord.attributes.address.country'), class: 'text-lg font-bold' %><br />
+                    <%= address_f.text_field :country, autofocus: true, autocomplete: "country", class: 'rounded-lg w-full' %>
+                  </div>
+                <% end %>
+              </div>
+
+              <div class="text-center mb-2 pb-2 mt-4 border-b-2">
+                <h1 class="text-2xl font-bold">
+                  <%= t('activerecord.attributes.user.password') %>
+                </h1>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+                <div>
+                  <%= f.label :password, t('activerecord.attributes.user.password'), class: 'text-lg font-bold' %>
+                  <% if @minimum_password_length %>
+                    <em>(<%= t('activerecord.attributes.address.characters_minimum', number: 6) %>)</em>
+                  <% end %><br />
+                  <%= f.password_field :password, autocomplete: "new-password", class: 'rounded-lg w-full' %>
+                </div>
+
+                <div>
+                  <%= f.label :password_confirmation, t('activerecord.attributes.user.password_confirmation'), class: 'text-lg font-bold' %><br />
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'rounded-lg w-full' %>
+                </div>
+              </div>
+
+              <div class="actions">
+                <%= f.submit t('activerecord.attributes.user.register'), class: 'p-1.5 bg-blue-800 rounded text-white font-medium block w-full mt-2' %>
+                <%= render "devise/shared/links" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
